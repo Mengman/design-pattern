@@ -5,7 +5,7 @@ package com.ycli.state;
  * Email: yucai.li@hpe.com
  */
 public class NoQuarterState implements State {
-    private GumballMachine gumballMachine;
+    private transient GumballMachine gumballMachine;
 
     public NoQuarterState(GumballMachine gumballMachine) {
         this.gumballMachine = gumballMachine;

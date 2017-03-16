@@ -1,12 +1,14 @@
 package com.ycli.state;
 
+import java.rmi.RemoteException;
+
 /**
  * Created by yucai on 2017/3/13.
  * Email: yucai.li@hpe.com
  */
 public class GumballMachineTestDrive {
-    public static void main(String[] args) {
-        GumballMachine gumballMachine = new GumballMachine(5);
+    public static void main(String[] args) throws RemoteException {
+        GumballMachine gumballMachine = new GumballMachine("Beijing", 5);
 
         System.out.println(gumballMachine);
 

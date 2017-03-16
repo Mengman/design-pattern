@@ -1,10 +1,15 @@
 package com.ycli.state;
 
+import com.ycli.proxy.server.GumballMachineRemote;
+
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
 /**
  * Created by yucai on 2017/3/13.
  * Email: yucai.li@hpe.com
  */
-public class GumballMachine {
+public class GumballMachine extends UnicastRemoteObject implements GumballMachineRemote {
     private State soldOutState;
     private State noQuarterState;
     private State hasQuarterState;
@@ -13,18 +18,28 @@ public class GumballMachine {
 
     private State state = soldOutState;
     private int count = 0;
+    private String location;
 
-    public GumballMachine(int count) {
+    public GumballMachine(String location, int count) throws RemoteException {
         soldOutState = new SoldOutState(this);
         noQuarterState = new NoQuarterState(this);
         hasQuarterState = new HasQuarterState(this);
         soldState = new SoldOutState(this);
         winnerState = new WinnerState(this);
 
+        this.location = location;
         this.count = count;
         if (count > 0) {
             state = noQuarterState;
         }
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public State getState() {
+        return state;
     }
 
     public void setState(State state) {

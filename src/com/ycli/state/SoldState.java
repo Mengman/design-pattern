@@ -5,7 +5,7 @@ package com.ycli.state;
  * Email: yucai.li@hpe.com
  */
 public class SoldState implements State {
-    protected GumballMachine gumballMachine;
+    protected transient GumballMachine gumballMachine;
 
     public SoldState(GumballMachine gumballMachine) {
         this.gumballMachine = gumballMachine;
